@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sidebar</title>
+<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+<style>
+*{margin:0;padding: 0;}
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+#sidebar{
+    width: 35px;
+    background: #CCC;
+    padding-top: 200px;
+    position: fixed;  /*ie6 not support*/
+    min-height: 100%; /*高度设置为全屏，因为position设为fixed，所以脱离文档流，高度不再是父元素的100%，不用一层层设置高度为100%了*/
+    z-index: 10;
+}
+.item{
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+}
+#close{
+    position:absolute;
+    bottom: 30px;
+    width: 35px;
+    text-align: center;
+    cursor: pointer;
+}
+.nav{
+    width: 200px;
+    position: fixed;
+    min-height: 100%;
+    background: blue;
+    z-index: 9;
+    opacity: 0;/*看不见了*/
+}
+.icon{
+    position: absolute;
+    top:5px;
+    right: 5px;/*相对于position为fixed的父元素定位*/
+    cursor: pointer;
+}
+.sib-move-left{
+    -webkit-animation:sml 1s;
+    -moz-animation:sml 1s;
+    -o-animation:sml 1s;
+    animation:sml 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+}
+@-webkit-keyframes sml{
+    from {  
+    }
+    to{
+        -webkit-transform:translateX(-120px);
+        transform:translateX(-120px);
+    }
+}
+@keyframes sml{
+    from {  
+    }
+    to{
+        -webkit-transform:translateX(-120px);
+        transform:translateX(-120px);
+    }
+}
+.sib-move-right{
+    -webkit-animation:smr 1s;
+    -moz-animation:smr 1s;
+    -o-animation:smr 1s;
+    animation:smr 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+}
+@-webkit-keyframes smr{
+    from {  
+    }
+    to{
+        -webkit-transform:translateX(120px);
+        transform:translateX(120px);
+    }
+}
+@keyframes smr{
+    from {  
+    }
+    to{
+        -webkit-transform:translateX(120px);
+        transform:translateX(120px);
+    }
+}
+.clo-move-right{
+    -webkit-animation:cmr 1s;
+    -moz-animation:cmr 1s;
+    -o-animation:cmr 1s;
+    animation:cmr 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+    /*left:160px;/*120+40*/
+}
+@-webkit-keyframes cmr{
+    from {  
+    }
+    to{
+        -webkit-transform:translateX(160px) rotate(405deg) scale(1.5);
+        transform:translateX(160px) rotate(405deg) scale(1.5);
+    }
+}
+@keyframes cmr{
+    from {  
+    }
+    to{
+        -webkit-transform:translateX(160px) rotate(405deg) scale(1.5);
+        transform:translateX(160px) rotate(405deg) scale(1.5);
+    }
+}
+.clo-move-left{
+    -webkit-animation:cml 1s;
+    -moz-animation:cml 1s;
+    -o-animation:cml 1s;
+    animation:cml 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+    /*left:160px;/*120+40*/
+}
+@-webkit-keyframes cml{
+    from {  
+         -webkit-transform:scale(1.5) rotate(405deg);/*只逆时针旋转了45度，不知道为啥*/
+         transform:scale(1.5) rotate(405deg);
+    }
+    to{
+        -webkit-transform:translateX(-160px) rotate(0deg) scale(1);
+        transform:translateX(-160px) rotate(0deg) scale(1);
+    }
+}
+@keyframes cml{
+    from { 
+        transform:scale(1.5) rotate(405deg);
+        -webkit-transform:scale(1.5) rotate(405deg);
+    }
+    to{
+        -webkit-transform:translateX(-160px) rotate(0deg) scale(1);
+        transform:translateX(-160px) rotate(0deg) scale(1);
+    }
+}
+.menuContent-move-right{
+     -webkit-animation:mmr 1s;
+    -moz-animation:mmr 1s;
+    -o-animation:mmr 1s;
+    animation:mmr 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+
+}
+@-webkit-keyframes mmr{
+    from {  
+         opacity: 0;
+    }
+    to{
+        opacity: 1;
+        -webkit-transform:translateX(120px);
+        transform:translateX(120px);/*-85+120*/
+    }
+}
+@keyframes mmr{
+    from { 
+       opacity: 0;
+    }
+    to{
+       opacity: 1;
+       -webkit-transform:translateX(120px);
+        transform:translateX(120px);/*-85+120*/
+    }
+}
+.menuContent-move-left{
+     -webkit-animation:mml 1s;
+    -moz-animation:mml 1s;
+    -o-animation:mml 1s;
+    animation:mml 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+
+}
+@-webkit-keyframes mml{
+    from {  
+         opacity: 1;
+    }
+    to{
+        opacity: 0;
+        -webkit-transform:translateX(-120px);
+        transform:translateX(-120px);
+    }
+}
+@keyframes mml{
+    from { 
+       opacity: 1;
+    }
+    to{
+       opacity: 0;
+       -webkit-transform:translateX(-120px);
+        transform:translateX(-120px);-
+    }
+}
+.menuContent-move-up{
+     -webkit-animation:mmu 1s;
+    -moz-animation:mmu 1s;
+    -o-animation:mmu 1s;
+    animation:mmu 1s;
+    -webkit-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;  /*保持动画最终效果*/
+
+}
+@-webkit-keyframes mmu{
+    from {  
+         opacity: 0;
+    }
+    to{
+        opacity: 1;
+        -webkit-transform:translateY(-250px);
+        transform:translateX(-250px);
+    }
+}
+@keyframes mmu{
+    from { 
+       opacity: 0;
+    }
+    to{
+       opacity: 1;
+       -webkit-transform:translateX(-250px);
+        transform:translateX(-250px);-
+    }
+}
+</style>
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li id="id1" class="item">
+                <span class="glyphicon glyphicon-heart"></span><!--Bootstrap图标-->
+                <div>我</div>
+            </li>
+            <li id="id2" class="item">
+                <span class="glyphicon glyphicon-heart"></span><!--Bootstrap图标-->
+                <div>我</div>
+            </li>
+            <li id="id3" class="item">
+                <span class="glyphicon glyphicon-heart"></span><!--Bootstrap图标-->
+                <div>我</div>
+            </li>
+            <li id="id4" class="item">
+                <span class="glyphicon glyphicon-heart"></span><!--Bootstrap图标-->
+                <div>我</div>
+            </li>
+            <li id="id5" class="item">
+                <span class="glyphicon glyphicon-heart"></span><!--Bootstrap图标-->
+                <div>我</div>
+            </li>
+            <li id="id6" class="item">
+                <span class="glyphicon glyphicon-heart"></span><!--Bootstrap图标-->
+                <div>我</div>
+            </li>
+        </ul>
+        <div id="close">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        
+    </div>
+    <div class="nav" id="id1-nav">
+            <div class="icon"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div>我1的内容</div>
+    </div>
+    <div class="nav" id="id2-nav">
+            <div class="icon"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div>我2的内容</div>
+    </div>
+    <div class="nav" id="id3-nav">
+            <div class="icon"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div>我3的内容</div>
+    </div>
+    <div class="nav" id="id4-nav">
+            <div class="icon"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div>我4的内容</div>
+    </div>
+    <div class="nav" id="id5-nav">
+            <div class="icon"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div>我5的内容</div>
+    </div>
+    <div class="nav" id="id6-nav">
+            <div class="icon"><span class="glyphicon glyphicon-chevron-left"></span></div>
+            <div>我6的内容</div>
+    </div>
+<script type="text/javascript">
+(function(){
+    var Menubar=function(){
+        this.ele=document.querySelectorAll("#sidebar ul");
+        this.state="allClose";
+        this.ele[0].addEventListener("click",function(evt){
+            var e=evt||window.event;
+            e.stopPropagation();
+        });
+        this.currentOpen=null;
+        var self=this;
+        this.menuList=document.querySelectorAll("#sidebar ul>li")
+        for (var i = 0; i < this.menuList.length; i++) {
+            this.menuList[i].addEventListener("click",function(evt){
+                var e=evt||window.event;
+                var menuContent=document.getElementById(e.currentTarget.id+"-nav");//e.currentTarget在冒泡阶段一般指当前事件活动的对象（一般为父级）即li
+                if(self.state=="allClose"){
+                    menuContent.className="nav";
+                    menuContent.style.top="0";
+                    menuContent.style.left="-85px";//-120+35
+                    menuContent.classList.add("menuContent-move-right");
+                    self.state="someOpen";
+                    self.currentOpen=menuContent;
+                }else{
+                    self.currentOpen.className="nav";
+                    self.currentOpen.style.top="0";
+                    self.currentOpen.style.left="35px";
+                    self.currentOpen.classList.add("menuContent-move-left");
+                    menuContent.className="nav";
+                    menuContent.style.top="250px";
+                    menuContent.style.left="35px";
+                    menuContent.classList.add("menuContent-move-up");//重复点击一个键类的动画不会重复添加
+                    self.state="someOpen";
+                    self.currentOpen=menuContent;
+                }
+            });
+        };
+        this.iconList=document.querySelectorAll(".icon");
+        for (var i = 0; i < this.iconList.length; i++) {
+            this.iconList[i].addEventListener("click",function(evt){
+                var e=evt||window.event;
+                var menuContent=e.currentTarget.parentNode;
+                menuContent.className="nav";
+                menuContent.style.top="0";
+                menuContent.style.left="35px";
+                menuContent.classList.add("menuContent-move-left");
+                self.state="allClose";
+            });
+        };
+    }
+    var Sidebar=function(id,closeId){  //构造函数//不是全局变量，不作为window的属性，在立即执行函数的内部
+        this.state="open";
+        this.element=document.getElementById(id||"sidebar");
+        this.closeElem=document.getElementById(closeId||"close");
+        var self=this; //self是构造函数Sidebar的对象
+        this.menuba=new Menubar();
+        this.element.addEventListener("click",function(evt){
+            var e=evt||window.event;
+            if(e.target!=self.element){
+                self.switchFunc();//如果点击到的不是本身，则调用开关函数
+            }
+        });
+    }
+    Sidebar.prototype.close = function() {
+        this.element.style.left="0";
+        this.closeElem.style.left="0";
+        this.element.className="sib-move-left";
+        this.closeElem.className="clo-move-right";
+        this.state="close";
+    };
+    Sidebar.prototype.open = function() {
+        this.element.style.left="-120px";//否则为0
+        this.element.className="sib-move-right";
+        this.closeElem.style.left="160px";//否则为0
+        this.closeElem.className="clo-move-left";
+        this.state="open";
+    };
+    Sidebar.prototype.switchFunc = function() {
+        if(this.state=="open"){
+            this.close();
+        }else{ 
+            this.open();
+        }
+    };
+    var sideBar=new Sidebar();    
+})();//立即执行
+</script>
+</body>
+</html>
